@@ -73,6 +73,7 @@ const RootQueryType = new GraphQLObjectType({
   //     })
   //   }
   // },
+  
     products: {
       type: new GraphQLList(ProductType),
       resolve() {

@@ -17,11 +17,21 @@ mongoose
 
 // remember we use bodyParser to parse requests into json
 app.use(bodyParser.json());
+
+const cors = require("cors");
+//...
+app.use(cors());
+
 app.use(
   "/graphql",
-  expressGraphQL({
-    schema,
-    graphiql: true
+  expressGraphQL(req =>{
+    return {
+      schema,
+      context: {
+        token: req.headers.authorization
+      },
+      graphiql: true
+    }
   })
 );
 module.exports = app;
